@@ -4,7 +4,9 @@ The converter takes XML attributes into consideration.
 ## Installation
 ```
 npm install *our_package*
+
 or
+
 use the function directly in your code
 ```
 ## Usage
@@ -49,3 +51,5 @@ var json = xml2json(xml);
 console.log(json); 
 // prints ‘{“person”: {“id”: “1234”, “_@ttribute”: “Something”}}’
 ```
+## Lisence
+
