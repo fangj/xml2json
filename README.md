@@ -51,5 +51,5 @@ var json = xml2json(xml);
 console.log(json); 
 // prints ‘{“person”: {“id”: “1234”, “_@ttribute”: “Something”}}’
 ```
-## Lisence
+## License
 
