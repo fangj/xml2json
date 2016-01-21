@@ -3,7 +3,7 @@ This function acts as an XML to JSON converter. The function is extremely small 
 The converter takes XML attributes into consideration. 
 ## Installation
 ```
-npm install *our_package*
+npm install *our_package* (not published on npm yet)
 
 or
 
