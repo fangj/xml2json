@@ -7,9 +7,9 @@ Download and use the function directly in your code!
 
 (soon on npm)
 ```
-## Usage
-### Online Demo
+## Online Demo
 Here's a [JSFiddle demo](https://jsfiddle.net/enkidootech/ogsousqd/29/)
+## Usage
 ### Without XML attributes
 ```javascript
 var xml = ‘<person><name>John Doe</name></person>’;
