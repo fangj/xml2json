@@ -19,7 +19,7 @@ console.log(json);
 ### With XML attributes
 #### Single attribute
 ```javascript
-var xml = ‘<person id=”1234”><name>John Doe</name></person>’;
+var xml = ‘<person id="1234"><name>John Doe</name></person>’;
 var json = xml2json(xml);
 
 console.log(json); 
@@ -27,7 +27,7 @@ console.log(json);
 ```
 #### Multiple attributes
 ```javascript
-var xml = ‘<person id=”1234” age=”30”><name>John Doe</name></person>’;
+var xml = ‘<person id="1234" age="30"><name>John Doe</name></person>’;
 var json = xml2json(xml); 
 
 console.log(json); 
@@ -36,7 +36,7 @@ console.log(json);
 ### Special cases
 #### Orphan values
 ```javascript
-var xml = ‘<person id=”1234”>Something</person>’;
+var xml = ‘<person id="1234">Something</person>’;
 
 // The xml string is converted to : 
 // <person><id>1234</id>Something</person>’
