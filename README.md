@@ -14,7 +14,7 @@ var xml = ‘<person><name>John Doe</name></person>’;
 var json = xml2json(xml); 
 
 console.log(json); 
-// prints ‘{“person”: {“name”: “John Doe”}}’
+// prints ‘{"person": {"name": "John Doe"}}’
 ```
 ### With XML attributes
 #### Single attribute
@@ -23,7 +23,7 @@ var xml = ‘<person id=”1234”><name>John Doe</name></person>’;
 var json = xml2json(xml);
 
 console.log(json); 
-// prints ‘{“person”: {“id”: “1234”, “name”: “John Doe”}}’
+// prints ‘{“person”: {"id": "1234", "name": "John Doe"}}’
 ```
 #### Multiple attributes
 ```javascript
@@ -47,7 +47,7 @@ var xml = ‘<person id=”1234”>Something</person>’;
 
 var json = xml2json(xml);
 console.log(json); 
-// prints ‘{“person”: {“id”: “1234”, “_@ttribute”: “Something”}}’
+// prints ‘{"person": {"id": "1234", "_@ttribute": "Something"}}’
 ```
 ## License
 The MIT License (MIT)
