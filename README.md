@@ -5,7 +5,9 @@ The converter takes XML attributes into consideration.
 ```
 Download and use the function directly in your code!
 
-(soon on npm)
+or
+
+npm install xml2json-light
 ```
 ## Online Demo
 Here's a [JSFiddle demo](https://jsfiddle.net/enkidootech/ogsousqd/29/)
