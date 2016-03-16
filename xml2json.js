@@ -1,3 +1,57 @@
+'use strict';
+
+module.exports = {
+    xml2json: xml2json
+};
+
+//***********************************************************************
+// Recursive function that creates a JSON object with a given XML string.
+//***********************************************************************
+function xml2json(xmlStr) {
+
+    xmlStr = cleanXML(xmlStr);
+
+    var obj = {},
+        tagName, indexClosingTag, inner_substring, tempVal, openingTag;
+
+    while (xmlStr.match(/<[^\/][^>]*>/)) {
+        openingTag = xmlStr.match(/<[^\/][^>]*>/)[0];
+        tagName = openingTag.substring(1, openingTag.length - 1);
+        indexClosingTag = xmlStr.indexOf(openingTag.replace('<', '</'));
+
+        // account for case where additional information in the openning tag
+        if (indexClosingTag == -1) {
+
+            tagName = openingTag.match(/[^<][\w+$]*/)[0];
+            indexClosingTag = xmlStr.indexOf('</' + tagName);
+            if (indexClosingTag == -1) {
+                indexClosingTag = xmlStr.indexOf('<\\/' + tagName);
+            }
+        }
+        inner_substring = xmlStr.substring(openingTag.length, indexClosingTag);
+        if (inner_substring.match(/<[^\/][^>]*>/)) {
+            tempVal = xml2json(inner_substring);
+        }
+        else {
+            tempVal = inner_substring;
+        }
+        // account for array or obj //
+        if (obj[tagName] === undefined) {
+            obj[tagName] = tempVal;
+        }
+        else if (Array.isArray(obj[tagName])) {
+            obj[tagName].push(tempVal);
+        }
+        else {
+            obj[tagName] = [obj[tagName], tempVal];
+        }
+
+        xmlStr = xmlStr.substring(openingTag.length * 2 + 1 + inner_substring.length);
+    }
+
+    return obj;
+}
+
 //*****************************************************************
 // Removes some characters that would break the recursive function.
 //*****************************************************************
@@ -118,52 +172,4 @@ function replaceAttributes(xmlStr) {
     }
 
     return xmlStr;
-}
-
-//***********************************************************************
-// Recursive function that creates a JSON object with a given XML string.
-//***********************************************************************
-function xml2json(xmlStr) {
-
-    xmlStr = cleanXML(xmlStr);
-
-    var obj = {},
-        tagName, indexClosingTag, inner_substring, tempVal, openingTag;
-
-    while (xmlStr.match(/<[^\/][^>]*>/)) {
-        openingTag = xmlStr.match(/<[^\/][^>]*>/)[0];
-        tagName = openingTag.substring(1, openingTag.length - 1);
-        indexClosingTag = xmlStr.indexOf(openingTag.replace('<', '</'));
-
-        // account for case where additional information in the openning tag
-        if (indexClosingTag == -1) {
-
-            tagName = openingTag.match(/[^<][\w+$]*/)[0];
-            indexClosingTag = xmlStr.indexOf('</' + tagName);
-            if (indexClosingTag == -1) {
-                indexClosingTag = xmlStr.indexOf('<\\/' + tagName);
-            }
-        }
-        inner_substring = xmlStr.substring(openingTag.length, indexClosingTag);
-        if (inner_substring.match(/<[^\/][^>]*>/)) {
-            tempVal = xml2json(inner_substring);
-        }
-        else {
-            tempVal = inner_substring;
-        }
-        // account for array or obj //
-        if (obj[tagName] === undefined) {
-            obj[tagName] = tempVal;
-        }
-        else if (Array.isArray(obj[tagName])) {
-            obj[tagName].push(tempVal);
-        }
-        else {
-            obj[tagName] = [obj[tagName], tempVal];
-        }
-
-        xmlStr = xmlStr.substring(openingTag.length * 2 + 1 + inner_substring.length);
-    }
-
-    return obj;
 }
