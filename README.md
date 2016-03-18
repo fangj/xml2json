@@ -14,8 +14,9 @@ Here's a [JSFiddle demo](https://jsfiddle.net/enkidootech/ogsousqd/29/)
 ## Usage
 ### Without XML attributes
 ```javascript
+var parser = require('xml2json-light');
 var xml = ‘<person><name>John Doe</name></person>’;
-var json = xml2json(xml); 
+var json = parser.xml2json(xml); 
 
 console.log(json); 
 // prints ‘{"person": {"name": "John Doe"}}’
@@ -23,16 +24,18 @@ console.log(json);
 ### With XML attributes
 #### Single attribute
 ```javascript
+var parser = require('xml2json-light');
 var xml = ‘<person id="1234"><name>John Doe</name></person>’;
-var json = xml2json(xml);
+var json = parser.xml2json(xml); 
 
 console.log(json); 
 // prints ‘{“person”: {"id": "1234", "name": "John Doe"}}’
 ```
 #### Multiple attributes
 ```javascript
+var parser = require('xml2json-light');
 var xml = ‘<person id="1234" age="30"><name>John Doe</name></person>’;
-var json = xml2json(xml); 
+var json = parser.xml2json(xml); 
 
 console.log(json); 
 // prints ‘{“person”: {“id”: “1234”, “age”: “30”, “name”: “John Doe”}}’
@@ -40,6 +43,7 @@ console.log(json);
 ### Special cases
 #### Orphan values
 ```javascript
+var parser = require('xml2json-light');
 var xml = ‘<person id="1234">Something</person>’;
 
 // The xml string is converted to : 
@@ -49,7 +53,7 @@ var xml = ‘<person id="1234">Something</person>’;
 // the xml string is then converted to :
 // ‘<person><id>1234</id><_@ttribute>Something</_@ttribute></person>’
 
-var json = xml2json(xml);
+var json = parser.xml2json(xml); 
 console.log(json); 
 // prints ‘{"person": {"id": "1234", "_@ttribute": "Something"}}’
 ```
