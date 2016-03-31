@@ -60,7 +60,7 @@ console.log(json);
 #### Comments
 ```javascript
 var parser = require('xml2json-light');
-var xml = '<name> <!-- somme comment --> Jane Doe </name>';
+var xml = '<name> <!-- some comment --> Jane Doe </name>';
 
 // The xml string is converted to : 
 // <name> Jane Doe </name>
