@@ -57,6 +57,19 @@ var json = parser.xml2json(xml);
 console.log(json); 
 // prints ‘{"person": {"id": "1234", "_@ttribute": "Something"}}’
 ```
+#### Comments
+```javascript
+var parser = require('xml2json-light');
+var xml = '<name> <!-- somme comment --> Jane Doe </name>';
+
+// The xml string is converted to : 
+// <name> Jane Doe </name>
+// All comments will be removed 
+
+var json = parser.xml2json(xml); 
+console.log(json); 
+// prints ‘{"name": "Jane Doe"}’
+```
 ## License
 The MIT License (MIT)
 
