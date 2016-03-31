@@ -5,12 +5,17 @@ module.exports = {
 };
 
 //***********************************************************************
+// Main function. Clears the given xml and then starts the recursion
+//***********************************************************************
+function xml2json(xmlStr){ 
+    xmlStr = cleanXML(xmlStr);
+    return xml2jsonRecurse(xmlStr,0); 
+}
+
+//***********************************************************************
 // Recursive function that creates a JSON object with a given XML string.
 //***********************************************************************
-function xml2json(xmlStr) {
-
-    xmlStr = cleanXML(xmlStr);
-
+function xml2jsonRecurse(xmlStr) {
     var obj = {},
         tagName, indexClosingTag, inner_substring, tempVal, openingTag;
 
@@ -56,7 +61,8 @@ function xml2json(xmlStr) {
 // Removes some characters that would break the recursive function.
 //*****************************************************************
 function cleanXML(xmlStr) {
-
+    
+    xmlStr = xmlStr.replace( /<!--[\s\S]*?-->/g, '' ); //remove commented lines
     xmlStr = xmlStr.replace(/\n|\t|\r/g, ''); //replace special characters
     xmlStr = xmlStr.replace(/ {1,}<|\t{1,}</g, '<'); //replace leading spaces and tabs
     xmlStr = xmlStr.replace(/> {1,}|>\t{1,}/g, '>'); //replace trailing spaces and tabs
