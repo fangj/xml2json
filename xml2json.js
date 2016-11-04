@@ -93,7 +93,8 @@ function replaceSelfClosingTags(xmlStr) {
             var tempTag = oldTag.substring(0, oldTag.length - 2);
             tempTag += ">";
 
-            var tagName = oldTag.match(/[^<][\w+$]*/)[0];
+            // var tagName = oldTag.match(/[^<][\w+$]*/)[0];
+            var tagName = oldTag.match(/[^<][\u4e00-\u9fa5]+/)[0]; //patch for Chinese character
             var closingTag = "</" + tagName + ">";
             var newTag = "<" + tagName + ">";
 
